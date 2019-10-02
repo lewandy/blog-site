@@ -1,0 +1,25 @@
+{
+  "name": "blogapi-gui",
+  "version": "1.0.0",
+  "description": "",
+  "private": true,
+  "dependencies": {},
+  "devDependencies": {
+    "webpack-cli": "^3.3.9",
+    "webpack": "^4.41.0"
+  },
+  "scripts": {
+    "build": "webpack --config webpack.config.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lewandy/blogapi-gui.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lewandy/blogapi-gui/issues"
+  },
+  "homepage": "https://github.com/lewandy/blogapi-gui#readme"
+}
