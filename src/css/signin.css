@@ -42,3 +42,12 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+
+.register-form {
+  max-width: 50%;
+  margin:auto;
+}
+
+.hide-register-form {
+  display: none;
+}
