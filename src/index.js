@@ -10,6 +10,6 @@ import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap.css'
 
 
-import './js/login.js';
+// import './js/login.js';
 
 

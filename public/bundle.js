@@ -173,7 +173,7 @@ eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack:///./src/
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_env_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/env.js */ \"./src/js/env.js\");\n/* harmony import */ var _js_env_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_env_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _css_signin_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/signin.css */ \"./src/css/signin.css\");\n/* harmony import */ var _css_signin_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_signin_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var popper_js_dist_popper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! popper.js/dist/popper */ \"./node_modules/popper.js/dist/popper.js\");\n/* harmony import */ var bootstrap_dist_js_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap/dist/js/bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\n/* harmony import */ var bootstrap_dist_js_bootstrap__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_js_bootstrap__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ \"./node_modules/bootstrap/dist/css/bootstrap.css\");\n/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_5__);\n/* harmony import */ var _js_login_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./js/login.js */ \"./src/js/login.js\");\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_env_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/env.js */ \"./src/js/env.js\");\n/* harmony import */ var _js_env_js__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_js_env_js__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var _css_signin_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/signin.css */ \"./src/css/signin.css\");\n/* harmony import */ var _css_signin_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_signin_css__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var popper_js_dist_popper__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! popper.js/dist/popper */ \"./node_modules/popper.js/dist/popper.js\");\n/* harmony import */ var bootstrap_dist_js_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap/dist/js/bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\n/* harmony import */ var bootstrap_dist_js_bootstrap__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_js_bootstrap__WEBPACK_IMPORTED_MODULE_4__);\n/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ \"./node_modules/bootstrap/dist/css/bootstrap.css\");\n/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_5__);\n\n\n\n\n\n\n\n\n\n\n\n\n// import './js/login.js';\n\n\n\n\n//# sourceURL=webpack:///./src/index.js?");
 
 /***/ }),
 
@@ -185,42 +185,6 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _js_
 /***/ (function(module, exports) {
 
 eval("window.API_URI = 'http://itla.hectorvent.com/api/';\n\n\n//# sourceURL=webpack:///./src/js/env.js?");
-
-/***/ }),
-
-/***/ "./src/js/login.js":
-/*!*************************!*\
-  !*** ./src/js/login.js ***!
-  \*************************/
-/*! no exports provided */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _services_authService__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./services/authService */ \"./src/js/services/authService.js\");\n/* harmony import */ var _utils_dom_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./utils/dom.js */ \"./src/js/utils/dom.js\");\n\n\n\n\n_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].onDomReady(() => {\n\tonShowRegisterForm();\n})\n\nfunction onShowRegisterForm() {\n\t_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].onClick('show-register', () => {\n\t\t_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].addClass('form-login','')\n\t})\n}\n\nfunction onSubmitLogin() {\n\t_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].onClick('btn-login', (e) => {\n\t\tconsole.log()\n\t});\n}\n\nfunction onClick(e) {\n\te.preventDefault();\n\n\tlet email = _utils_dom_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].val('inputEmail');\n\tlet password = _utils_dom_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].val('inputPassword');\n\n\ttry {\n\t\tvar auth = new _services_authService__WEBPACK_IMPORTED_MODULE_0__[\"default\"]({\n\t\t\temail,\n\t\t\tpassword\n\t\t});\n\n\t\tif (auth.user !== null) {\n\t\t\twindow.location = \"/blog\";\n\t\t} else {\n\t\t\tconsole.log(\"Login Failed\")\n\t\t}\n\t} catch (error) {\n\t\tconsole.log(error);\n\t}\n}\n\nfunction showRegisterForm() {\n\t_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].removeClass('form-register', 'hide-element');\n}\n\nfunction hideRegisterForm() {\n\t_utils_dom_js__WEBPACK_IMPORTED_MODULE_1__[\"default\"].addClass('form-register', 'hide-element');\n}\n\n\n\n\n//# sourceURL=webpack:///./src/js/login.js?");
-
-/***/ }),
-
-/***/ "./src/js/services/authService.js":
-/*!****************************************!*\
-  !*** ./src/js/services/authService.js ***!
-  \****************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Auth; });\nclass Auth {\n\tconstructor(_credentials) {\n\t\tthis.credentials = _credentials;\n\n\t\tthis.user = null;\n\t\tthis.authenticate();\n\t}\n\n    /**\n     * Return current users logued in.\n     */\n\tuserInfo() {\n\t\treturn this.user;\n\t}\n\n\tasync authenticate() {\n\t\tlet data = {\n\t\t\temail: this.credentials.email,\n\t\t\tpassword: this.credentials.password\n\t\t};\n\n\t\tlet response = await fetch(window.API_URI + 'login', {\n\t\t\tmethod: 'POST',\n\t\t\tbody: JSON.stringify(data),\n\t\t\theaders: {\n\t\t\t\t\"Content-Type\": \"application/json\"\n\t\t\t},\n\t\t})\n\n\t\tif (response.status === 200) {\n\t\t\tlet userInfo = await response.json();\n\t\t\tlocalStorage.setItem('user',JSON.stringify(userInfo));\n\n\t\t\tthis.user = userInfo;\n\t\t} else {\n\t\t\tthis.user = null;\n\t\t\tconsole.log(\"Datos incorrectos\");\n\t\t}\n\t}\n}\n\n//# sourceURL=webpack:///./src/js/services/authService.js?");
-
-/***/ }),
-
-/***/ "./src/js/utils/dom.js":
-/*!*****************************!*\
-  !*** ./src/js/utils/dom.js ***!
-  \*****************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-eval("__webpack_require__.r(__webpack_exports__);\nvar DomJs = {\n    /**\n     * On click event wrapper\n     * @param { String } key \n     * @param { Function } callback \n     */\n    onClick(key, callback) {\n        let element = document.getElementById(key);\n        element.addEventListener('click', callback);\n    },\n\n    /**\n     * On form submit event wrapper\n     * @param { String } key \n     * @param { Function } callback \n     */\n    onSubmit(key, callback) {\n        let element = document.getElementById(key);\n        element.addEventListener('submit', callback);\n    },\n\n    /**\n     * Check when the DOM is loaded\n     * @param { Function } callback \n     */\n    onDomReady(callback) {\n        document.addEventListener('DOMContentLoaded', callback);\n    },\n\n    addClass(key, name) {\n        document.getElementById(key).classList.add(name);\n    },\n\n    removeClass(key, name) {\n        document.getElementById(key).classList.remove(name);\n    },\n\n    /**\n     * Return a value of the element\n     * @param { String } key \n     */\n    val(key) {\n        return document.getElementById(key).value;\n    },\n    hideElement(key) {\n        document.getElementById(key).style.display = 'none';\n    }\n}\n\n/* harmony default export */ __webpack_exports__[\"default\"] = (DomJs);\n\n//# sourceURL=webpack:///./src/js/utils/dom.js?");
 
 /***/ })
 
