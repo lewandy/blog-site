@@ -1,5 +1,3 @@
-import "@babel/polyfill";
-
 import './js/env.js';
 import './css/signin.css';
 import './css/custom.css'
