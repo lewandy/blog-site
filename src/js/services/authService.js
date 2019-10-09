@@ -1,40 +1,22 @@
+import Http from "../utils/http"
+
+/**
+ * Class to wrap logic for security operations.
+ */
 export default class Auth {
-	constructor(_credentials) {
-		this.credentials = _credentials;
-
+	constructor() {
 		this.user = null;
-		this.authenticate();
 	}
+	/**
+	 * Verify the user credentials
+	 * @param { Object } _credentials user credentials
+	 * @returns { Object } 
+	 */
+	async authenticate(_credentials) {
+		let auth;
+		let http = new Http();
+		auth = await http.Post('login', _credentials);
 
-    /**
-     * Return current users logued in.
-     */
-	userInfo() {
-		return this.user;
-	}
-
-	async authenticate() {
-		let data = {
-			email: this.credentials.email,
-			password: this.credentials.password
-		};
-
-		let response = await fetch(window.API_URI + 'login', {
-			method: 'POST',
-			body: JSON.stringify(data),
-			headers: {
-				"Content-Type": "application/json"
-			},
-		})
-
-		if (response.status === 200) {
-			let userInfo = await response.json();
-			localStorage.setItem('user',JSON.stringify(userInfo));
-
-			this.user = userInfo;
-		} else {
-			this.user = null;
-			console.log("Datos incorrectos");
-		}
+		return auth;
 	}
 }
