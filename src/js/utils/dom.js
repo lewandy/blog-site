@@ -6,6 +6,11 @@ var DomJs = {
      */
     onClick(key, callback) {
         let element = document.getElementById(key);
+        if (!element)
+        {
+            throw new Error("Element not found");
+        }
+
         element.addEventListener('click', callback);
     },
 
