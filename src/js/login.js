@@ -2,9 +2,7 @@ import Auth from './services/authService'
 import DomJs from './utils/dom.js'
 
 DomJs.onDomReady(() => {
-	DomJs.onClick('btn-login', (e) => {
-		e.preventDefault();
-
+	DomJs.onSubmit('login-frm', () => {
 		let email = DomJs.val('inputEmail');
 		let password = DomJs.val('inputPassword');
 
@@ -23,6 +21,20 @@ DomJs.onDomReady(() => {
 			console.log("Login failed");
 		}
 	});
+
+	DomJs.onSubmit('register-frm', (e) => {
+		let name = DomJs.val('name');
+		let email = DomJs.val('email');
+		let password = DomJs.val('password');
+		let confirmPassword = DomJs.val('confirm-password');
+
+		if (password !== confirmPassword)
+			alert("Las contraseñas no coinciden");
+		
+		//TODO : Register the user
+
+		
+	})
 
 	DomJs.onClick('show-register', () => showRegister())
 	DomJs.onClick('btn-cancel', () => showLogin())
