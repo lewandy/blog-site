@@ -2,15 +2,15 @@
 const path = require('path');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 
 //Export the module
 module.exports = {
 	entry: {
-		login: './src/js/login',
-		app: './src/index.js'
+		app: './src/js/index.js'
 	},
 	output: {
-		path: path.resolve(__dirname, 'dist'),
+		path: path.resolve(__dirname, 'public'),
 		filename: '[name].js'
 	},
 	resolve: {
@@ -48,14 +48,18 @@ module.exports = {
 			}
 		]
 	},
-	plugins: [new HtmlWebpackPlugin({
-		template: './src/index.html'
-	}),
-	new MiniCssExtractPlugin({
-		// Options similar to the same options in webpackOptions.output
-		// both options are optional
-		filename: '[name].css',
-		chunkFilename: '[id].css',
-	}),
+	plugins: [
+		new HtmlWebpackPlugin({
+			template: './src/index.html'
+		}),
+		new CopyPlugin([
+			{ from: './src/js/templates/', to: 'templates/' },
+		]),
+		new MiniCssExtractPlugin({
+			// Options similar to the same options in webpackOptions.output
+			// both options are optional
+			filename: '[name].css',
+			chunkFilename: '[id].css',
+		}),
 	]
 }
