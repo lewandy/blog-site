@@ -5,13 +5,12 @@ var DomJs = {
      * @param { Function } callback 
      */
     onClick(key, callback) {
-        let element = document.getElementById(key);
-        if (!element)
-        {
-            throw new Error("Element not found");
-        }
+        try {
+            let element = document.getElementById(key);
+            element.addEventListener('click', callback);
+        } catch (error) {
 
-        element.addEventListener('click', callback);
+        }
     },
 
     /**
@@ -20,8 +19,12 @@ var DomJs = {
      * @param { Function } callback 
      */
     onSubmit(key, callback) {
-        let element = document.getElementById(key);
-        element.addEventListener('submit', callback);
+        try {
+            let element = document.getElementById(key);
+            element.addEventListener('submit', callback);
+        } catch (error) {
+            //Do nothing
+        }
     },
 
     /**
@@ -38,7 +41,11 @@ var DomJs = {
      * @param { String } name  Class that will be append
      */
     addClass(key, name) {
-        document.getElementById(key).classList.add(name);
+        try {
+            document.getElementById(key).classList.add(name);
+        } catch {
+            //Do nothing
+        }
     },
 
     /**
@@ -47,7 +54,11 @@ var DomJs = {
      * @param { String } name Clas thtat will be removed 
      */
     removeClass(key, name) {
-        document.getElementById(key).classList.remove(name);
+        try {
+            document.getElementById(key).classList.remove(name);
+        } catch (error) {
+            //Do nothing
+        }
     },
 
     /**
