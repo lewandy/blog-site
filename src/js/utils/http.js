@@ -3,15 +3,16 @@
  */
 export default class Http {
     /**
-     * 
      * @param { Object } config http client configuration
      */
     constructor(config = null) {
-        this.headers = {
-            "Content-Type": "application/json"
-        }
-
         this.baseUri = config && config.baseUri || window.API_URI;
+        this.token = config && config.baseUri || localStorage.getItem('_token');
+
+        this.headers = {
+            "Content-Type": "application/json",
+            "Authorization": `Bearer ${this.token}`
+        }
     }
 
     /**
@@ -40,15 +41,18 @@ export default class Http {
      * @param { String } resource 
      * @param { Function } callback 
      */
-    async Get(resource, callback) {
-        let request = await fetch(`${this.baseUri}/${resource}`, {
-            method: "GET"
+    async Get(resource) {
+        let { headers } = this;
+
+        let request = await fetch(`${this.baseUri}${resource}`, {
+            method: "GET",
+            headers
         });
 
         if (request.status !== 200)
             throw new Error('Request failed , status code :' + request.status);
 
         let response = await request.json();
-        callback(response);
+        return response;
     }
 }
