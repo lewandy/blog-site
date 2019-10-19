@@ -7,11 +7,17 @@ const CopyPlugin = require('copy-webpack-plugin');
 //Export the module
 module.exports = {
 	entry: {
-		app: './src/js/index.js'
+		app: './src/js/index.js',
+		vendors: './src/js/imports.js'
 	},
 	output: {
-		path: path.resolve(__dirname, 'public'),
+		path: path.resolve(__dirname, 'dist'),
 		filename: '[name].js'
+	},
+	optimization: {
+		splitChunks: {
+			chunks: 'all',
+		},
 	},
 	resolve: {
 		alias: {
@@ -50,7 +56,8 @@ module.exports = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: './src/index.html'
+			template: './src/index.html',
+			title: 'Blog-itla'
 		}),
 		new CopyPlugin([
 			{ from: './src/js/templates/', to: 'templates/' },
