@@ -10,8 +10,15 @@ export default class Auth {
 		this.http = new Http();
 	}
 
-	static get user(){
+	static get user() {
 		return localStorage.getItem("user") || null;
+	}
+
+	/**
+	 * Logout the current session.
+	 */
+	static logout() {
+		
 	}
 
 	/**
@@ -21,7 +28,6 @@ export default class Auth {
 	 */
 	async authenticate(credentials) {
 		let auth = await this.http.Post('login', credentials);
-
 		return auth;
 	}
 

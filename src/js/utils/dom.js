@@ -9,7 +9,7 @@ var DomJs = {
             let element = document.getElementById(key);
             element.addEventListener('click', callback);
         } catch (error) {
-
+            console.log(error);
         }
     },
 

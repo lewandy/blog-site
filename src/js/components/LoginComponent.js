@@ -10,7 +10,7 @@ export default class LoginComponent extends HTMLElement {
       this.auth = new Auth();
 
       //This will be refactored
-      if (window.localStorage.getItem('user')) {
+      if (window.localStorage.getItem('_token')) {
          window.location.hash = '/blog';
       } else {
          this.render();
@@ -19,6 +19,10 @@ export default class LoginComponent extends HTMLElement {
 
    connectedCallback() {
       //TODO : Do something when the component is mounted in the DOM.
+   }
+
+   disconnectedCallback(){
+      //TODO: Remove all event listeners
    }
 
    /**
@@ -35,7 +39,7 @@ export default class LoginComponent extends HTMLElement {
             this.auth
                .authenticate({ email, password })
                .then(res => {
-                  localStorage.setItem('user', JSON.stringify(res));
+                  localStorage.setItem('_token', res.token);
                   window.location.hash = "/blog";
                })
                .catch(err => {
