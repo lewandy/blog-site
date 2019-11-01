@@ -1,5 +1,6 @@
 import { getTemplate } from "../utils/template";
 import DomJs from "../utils/dom"
+import { initWebSocket } from "../utils/webSockets"
 import Auth from "../services/authService"
 
 export default class LoginComponent extends HTMLElement {
@@ -40,13 +41,18 @@ export default class LoginComponent extends HTMLElement {
                .authenticate({ email, password })
                .then(res => {
                   localStorage.setItem('_token', res.token);
+                  
+                  //Open connection with websocket protocol
+                  //initWebSocket(window.WS_URI);
+
                   window.location.hash = "/blog";
                })
                .catch(err => {
+                  console.log(err);
                   DomJs.removeClass('login-alert', 'hide-element')
                })
          } catch (error) {
-
+            console.log(error);
          }
       });
 

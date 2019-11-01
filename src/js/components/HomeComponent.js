@@ -1,6 +1,7 @@
 import { getTemplate } from "../utils/template";
 import PostService from "../services/postService"
 import Auth from "../services/authService"
+import Router from "../routes/router"
 import DomJs from "../utils/dom"
 
 export default class HomeComponent extends HTMLElement {
@@ -21,8 +22,9 @@ export default class HomeComponent extends HTMLElement {
     * Esto pasa cuando se conecta al DOM
     */
    connectedCallback() {
-      console.log("Home component is connected");
-
+      this.addEventListener("post_like",() => {
+         //TODO : When websocket emmit a event
+      })
    }
 
    addListeners() {
@@ -53,7 +55,8 @@ export default class HomeComponent extends HTMLElement {
             .replace("@USER", post.userName)
             .replace("@LIKES", post.likes)
             .replace("@TAGS", this.getTagsHtml(post))
-            .replace("@COMMENTS", post.comments);
+            .replace("@COMMENTS", post.comments)
+            .replace("@VIEWS", post.views);
 
          postsListHtml += temp;
          temp = "";
@@ -70,7 +73,7 @@ export default class HomeComponent extends HTMLElement {
    getTagsHtml(post) {
       let tags = "";
       for (let tag of post.tags) {
-         tags += `<a href="#" class="badge badge-primary mr-1">${tag}</a>`;
+         tags += `<a href="#" class="badge badge-secondary mr-1">${tag}</a>`;
       }
       return tags;
    }

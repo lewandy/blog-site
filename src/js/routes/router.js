@@ -57,6 +57,13 @@ export default class Router {
       }
    }
 
+   static getParams(){
+      let newUri = e.newURL.substr(e.newURL.indexOf('#') + 1, e.newURL.length);
+
+      //TODO: add feature of mixins params
+      let params = /{[0-9]+}/.test(newUri);
+   }
+
    /**
     * Go to especific route
     * @param { String } uri 
