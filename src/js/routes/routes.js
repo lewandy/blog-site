@@ -10,7 +10,12 @@ export default [
    },
    {
       name: 'home-component',
-      path: '/blog',
+      path: '/posts',
       component: HomeComponent
-   }
+   },
+   // {
+   //    name: 'home-component',
+   //    path: '/posts',
+   //    component: HomeComponent
+   // }
 ]

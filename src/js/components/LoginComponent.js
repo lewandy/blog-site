@@ -12,7 +12,7 @@ export default class LoginComponent extends HTMLElement {
 
       //This will be refactored
       if (window.localStorage.getItem('_token')) {
-         window.location.hash = '/blog';
+         window.location.hash = '/posts';
       } else {
          this.render();
       }
@@ -43,9 +43,9 @@ export default class LoginComponent extends HTMLElement {
                   localStorage.setItem('_token', res.token);
                   
                   //Open connection with websocket protocol
-                  //initWebSocket(window.WS_URI);
+                  initWebSocket(window.WS_URI);
 
-                  window.location.hash = "/blog";
+                  window.location.hash = "/posts";
                })
                .catch(err => {
                   console.log(err);

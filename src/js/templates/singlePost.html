@@ -1,7 +1,7 @@
 <!-- This is a single post template -->
 
 <!-- Blog Post -->
-<div class="card mb-4">
+<div class="card mb-4 card-@POST_ID">
    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
    <div class="card-body">
       <a href="#" class="card-title post-title">@POST_TITLE</a>
@@ -12,11 +12,11 @@
    <div class="card-footer text-muted">
       @POST_DATE by
       <a href="#" class="mr-2">@USER</a>
-      <button class="btn btn-outline-primary btn-sm"><i class="fas fa-thumbs-up"></i><span
-            class="text-white">@LIKES</span></button>
-      <button class="btn btn-primary btn-sm"><i class="fas fa-comments"></i> <span
+      <button class="btn btn-outline-primary btn-sm btn-like"><i class="fas fa-thumbs-up"></i><span
+            class="text-primary">@LIKES</span></button>
+      <button class="btn btn-primary btn-sm btn-comment"><i class="fas fa-comments"></i> <span
             class="text-white">@COMMENTS</span></button>
-      <button class="btn btn-primary btn-sm"><i class="fas fa-eye"></i> <span
+      <button class="btn btn-primary btn-sm btn-views"><i class="fas fa-eye"></i> <span
             class="text-white">@VIEWS</span></button>
    </div>
 </div>

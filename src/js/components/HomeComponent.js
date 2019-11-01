@@ -22,8 +22,9 @@ export default class HomeComponent extends HTMLElement {
     * Esto pasa cuando se conecta al DOM
     */
    connectedCallback() {
-      this.addEventListener("post_like",() => {
+      this.addEventListener("post_like", (e) => {
          //TODO : When websocket emmit a event
+         console.log(e)
       })
    }
 
@@ -49,6 +50,7 @@ export default class HomeComponent extends HTMLElement {
       //Replace variables
       for (let post of posts) {
          let temp = singlePostTemplate
+            .replace("@POST_ID", post.id)
             .replace("@POST_TITLE", post.title)
             .replace("@POST_SUMMARY", post.body)
             .replace("@POST_DATE", post.createdAt)
