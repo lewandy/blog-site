@@ -3,6 +3,7 @@ import DomJs from "../utils/dom"
 import Auth from "../services/authService"
 
 export default class LoginComponent extends HTMLElement {
+   static name = "login-component";
    templateUri = './templates/login.html'
 
    constructor() {
@@ -11,7 +12,7 @@ export default class LoginComponent extends HTMLElement {
 
       //This will be refactored
       if (window.localStorage.getItem('_token')) {
-         window.location.hash = '/blog';
+         window.location.hash = '/posts';
       } else {
          this.render();
       }
@@ -40,13 +41,15 @@ export default class LoginComponent extends HTMLElement {
                .authenticate({ email, password })
                .then(res => {
                   localStorage.setItem('_token', res.token);
-                  window.location.hash = "/blog";
+
+                  window.location.hash = "/posts";
                })
                .catch(err => {
+                  console.log(err);
                   DomJs.removeClass('login-alert', 'hide-element')
                })
          } catch (error) {
-
+            console.log(error);
          }
       });
 

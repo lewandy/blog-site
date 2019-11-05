@@ -12,7 +12,9 @@ var DomJs = {
             console.log(error);
         }
     },
-
+    getElement(key) {
+        return document.getElementById(key);
+    },
     /**
      * On form submit event wrapper
      * @param { String } key 

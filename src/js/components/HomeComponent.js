@@ -1,9 +1,10 @@
 import { getTemplate } from "../utils/template";
 import PostService from "../services/postService"
-import Auth from "../services/authService"
+import { initWebSocket } from "../utils/webSockets"
 import DomJs from "../utils/dom"
 
 export default class HomeComponent extends HTMLElement {
+   static name = "home-component";
    templateUri = './templates/home.html'
 
    constructor() {
@@ -15,13 +16,22 @@ export default class HomeComponent extends HTMLElement {
       }
 
       this.render();
+
+      //Open connection with websocket protocol
+      initWebSocket(window.WS_URI);
    }
 
    /**
     * Esto pasa cuando se conecta al DOM
     */
    connectedCallback() {
-      console.log("Home component is connected");
+      this.addEventListener("post_like", (e) => {
+         //TODO : When websocket emmit a event
+         console.log(e)
+      })
+   }
+
+   disconnectedCallback(){
 
    }
 
@@ -33,6 +43,7 @@ export default class HomeComponent extends HTMLElement {
          window.location.hash = '/login';
       });
    }
+
 
    /**
     * Render posts in the views
@@ -47,19 +58,23 @@ export default class HomeComponent extends HTMLElement {
       //Replace variables
       for (let post of posts) {
          let temp = singlePostTemplate
+            .replace(/@POST_ID/g, post.id)
             .replace("@POST_TITLE", post.title)
             .replace("@POST_SUMMARY", post.body)
             .replace("@POST_DATE", post.createdAt)
             .replace("@USER", post.userName)
             .replace("@LIKES", post.likes)
             .replace("@TAGS", this.getTagsHtml(post))
-            .replace("@COMMENTS", post.comments);
+            .replace("@COMMENTS", post.comments)
+            .replace("@VIEWS", post.views);
 
          postsListHtml += temp;
          temp = "";
       }
 
       postListContainer.innerHTML = postsListHtml;
+
+      this.putButtonsLikeEvent();
    }
 
    async getPostTemplate() {
@@ -67,10 +82,18 @@ export default class HomeComponent extends HTMLElement {
       return template;
    }
 
+   putButtonsLikeEvent() {
+      let buttons = document.getElementsByClassName("btn-like");
+   }
+
+   onButtonLikeClick(e) {
+      console.log(e.target);
+   }
+
    getTagsHtml(post) {
       let tags = "";
       for (let tag of post.tags) {
-         tags += `<a href="#" class="badge badge-primary mr-1">${tag}</a>`;
+         tags += `<a href="#" class="badge badge-secondary mr-1">${tag}</a>`;
       }
       return tags;
    }
@@ -83,6 +106,7 @@ export default class HomeComponent extends HTMLElement {
       this.innerHTML = template;
 
       this.addListeners();
+
 
       //Load posts
       await this.renderPosts();

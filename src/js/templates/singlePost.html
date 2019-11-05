@@ -1,24 +1,22 @@
 <!-- This is a single post template -->
 
 <!-- Blog Post -->
-<div class="card mb-4">
+<div class="card mb-4 card-@POST_ID">
    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
    <div class="card-body">
-      <h2 class="card-title">@POST_TITLE</h2>
+      <a href="#" class="card-title post-title">@POST_TITLE</a>
       <p>@TAGS</p>
       <p class="card-text">@POST_SUMMARY</p>
       <a href="#" class="btn btn-primary">Leer mas &rarr;</a>
    </div>
    <div class="card-footer text-muted">
       @POST_DATE by
-      <a href="#">@USER</a>
-      <button type="button" class="btn btn-sm btn-outline-primary">
-         Me gustas <span class="badge badge-light">@LIKES</span>
-         <span class="sr-only">unread messages</span>
-      </button>
-      <button type="button" class="btn btn-sm btn-outline-primary">
-         Comentarios <span class="badge badge-light">@COMMENTS</span>
-         <span class="sr-only">unread messages</span>
-      </button>
+      <a href="#" class="mr-2">@USER</a>
+      <button id="btn-@POST_ID" class="btn-like btn btn-outline-primary btn-sm"><i class="fas fa-thumbs-up"></i><span
+            class="text-primary">@LIKES</span></button>
+      <button class="btn btn-primary btn-sm btn-comment"><i class="fas fa-comments"></i> <span
+            class="text-white">@COMMENTS</span></button>
+      <button class="btn btn-primary btn-sm btn-views"><i class="fas fa-eye"></i> <span
+            class="text-white">@VIEWS</span></button>
    </div>
 </div>

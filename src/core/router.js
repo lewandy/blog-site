@@ -1,24 +1,23 @@
+import { register } from "./lib/component";
+
 export default class Router {
    routes = []
    nodeId = 'app'
 
    constructor(config) {
       this.routes = config.routes;
+      this.defineComponents(config.routes);
 
-      this.defineComponents();
       this.loadDefault();
       this.onRouteChanged();
-
-      window.router = this;
    }
 
    /**
     * Define and register all components and routes
     */
-   defineComponents() {
-      for (let route of this.routes) {
-         customElements.define(route.name, route.component);
-      }
+   defineComponents(routes) {
+      let components = routes.map(item => item.component);
+      register(components);
    }
 
    /**
@@ -55,6 +54,13 @@ export default class Router {
       } else {
          throw new Error("Default router not provided to the router")
       }
+   }
+
+   static getParams() {
+      let newUri = e.newURL.substr(e.newURL.indexOf('#') + 1, e.newURL.length);
+
+      //TODO: add feature of mixins params
+      let params = /{[\d]+}/.test(newUri);
    }
 
    /**

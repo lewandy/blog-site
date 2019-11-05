@@ -2,3 +2,9 @@
     display: none !important;
 }
 
+/* Single post styles */
+.post-title {
+    font-size: 20px;
+    text-decoration-line: none;
+}
+
