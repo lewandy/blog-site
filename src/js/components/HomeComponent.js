@@ -1,10 +1,10 @@
 import { getTemplate } from "../utils/template";
 import PostService from "../services/postService"
-import Auth from "../services/authService"
-import Router from "../routes/router"
+import { initWebSocket } from "../utils/webSockets"
 import DomJs from "../utils/dom"
 
 export default class HomeComponent extends HTMLElement {
+   static name = "home-component";
    templateUri = './templates/home.html'
 
    constructor() {
@@ -16,6 +16,9 @@ export default class HomeComponent extends HTMLElement {
       }
 
       this.render();
+
+      //Open connection with websocket protocol
+      initWebSocket(window.WS_URI);
    }
 
    /**
@@ -28,6 +31,10 @@ export default class HomeComponent extends HTMLElement {
       })
    }
 
+   disconnectedCallback(){
+
+   }
+
    addListeners() {
       DomJs.onClick('btn-logout', (e) => {
          e.preventDefault();
@@ -36,6 +43,7 @@ export default class HomeComponent extends HTMLElement {
          window.location.hash = '/login';
       });
    }
+
 
    /**
     * Render posts in the views
@@ -50,7 +58,7 @@ export default class HomeComponent extends HTMLElement {
       //Replace variables
       for (let post of posts) {
          let temp = singlePostTemplate
-            .replace("@POST_ID", post.id)
+            .replace(/@POST_ID/g, post.id)
             .replace("@POST_TITLE", post.title)
             .replace("@POST_SUMMARY", post.body)
             .replace("@POST_DATE", post.createdAt)
@@ -65,11 +73,21 @@ export default class HomeComponent extends HTMLElement {
       }
 
       postListContainer.innerHTML = postsListHtml;
+
+      this.putButtonsLikeEvent();
    }
 
    async getPostTemplate() {
       let template = await getTemplate('../templates/singlePost.html');
       return template;
+   }
+
+   putButtonsLikeEvent() {
+      let buttons = document.getElementsByClassName("btn-like");
+   }
+
+   onButtonLikeClick(e) {
+      console.log(e.target);
    }
 
    getTagsHtml(post) {
@@ -88,6 +106,7 @@ export default class HomeComponent extends HTMLElement {
       this.innerHTML = template;
 
       this.addListeners();
+
 
       //Load posts
       await this.renderPosts();
