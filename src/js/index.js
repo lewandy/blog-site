@@ -4,13 +4,20 @@ import 'bootstrap/dist/css/bootstrap.css'
 import '@fortawesome/fontawesome-free/js/fontawesome'
 import '@fortawesome/fontawesome-free/js/solid'
 
-import Router from "./routes/router";
 import routes from "./routes/routes"
+import BlogApp from './app';
 
-//New router
-new Router({
+import { TheHeader,TheFooter } from "./components/layout";
+
+let layoutComponents = [
+   TheHeader,
+   TheFooter
+]
+
+new BlogApp({
+   components: layoutComponents,
    routes
-})
+});
 
 
 
