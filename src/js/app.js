@@ -1,25 +1,13 @@
-export default class App {
- 
-   /**
-    * 
-    * @param { object } config 
-    */
-   constructor(config = null) {
-      //Do stuff in the constructor
-   }
+import App from "../core/app";
+import Router from "../core/router";
 
-   /**
-    * Register a new component to the app.
-    */
-   registerComponent(component) {
-      //TODO: 
-   }
+export default class BlogApp extends App {
+   router = null;
 
-   /**
-    * Register a new context or especific folder with components
-    * @param {Object} contextPath 
-    */
-   registerContext(contextPath) {
-      //TODO: 
+   constructor(configuration) {
+      super(configuration.components)
+
+      this.router = new Router({ routes: configuration.routes });
+      window.app = this;
    }
 }
