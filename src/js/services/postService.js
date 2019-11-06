@@ -12,6 +12,6 @@ export default class postService {
     */
    async getPosts(){
       let posts = await this.http.Get('post');
-      return posts;
+      return posts.slice(0,5);
    }
 }
