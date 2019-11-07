@@ -7,17 +7,20 @@ const routes = [
       name: 'login-component',
       path: '/login',
       component: LoginComponent,
-      default: true
+      initial: true,
+      main: true
    },
    {
       name: 'home-component',
       path: '/posts',
-      component: HomeComponent
+      component: HomeComponent,
+      main: true
    },
    {
       name: 'post-component',
-      path: '/posts/{id}',
-      component: PostComponent
+      path: /(\/posts\/\d+)/,
+      component: PostComponent,
+      parent: HomeComponent
    }
 ]
 

@@ -1,90 +1,87 @@
 import { register } from "./lib/component";
+import Auth from "../js/services/authService"
+import RouterViewComponent from "./components/router-view";
 
 export default class Router {
    routes = []
-   nodeId = 'app'
+   appNodeId = 'app'
 
    constructor(config) {
       this.routes = config.routes;
-      this.defineComponents(config.routes);
+      this.registerComponents(config.routes);
+      this.goToInitialRoute();
 
-      this.loadDefault();
-      this.onRouteChanged();
+      this.onPopsState();
+   }
+
+   onPopsState() {
+      window.onpopstate = () => {
+         this.goToRoute(window.location.pathname);
+      }
+   }
+
+   goToInitialRoute() {
+      // Figure out the path segments for the route which should load initially.
+      const pathname = window.location.pathname;
+
+      let matched = this.routes.find(route => route.initial);
+
+      if (Auth.isAuth()) {
+         if (pathname == "/"){
+            this.goToRoute("/posts");
+            return;
+         }
+
+         this.goToRoute(pathname);
+      } else {
+         this.goToRoute(matched.path);
+      }
+   }
+
+   goToRoute(uri) {
+      //Find the route info
+      let matched = this.routes.find((route) => { 
+         return route.path == uri || route.path instanceof RegExp && route.path.test(uri)
+      })
+
+      if (!matched) {
+         alert(`This route not exists ${uri}`);
+         return; //Exit function
+      }
+      window.history.pushState({},uri,location.origin + uri);
+
+      //mount the new node component to the app container node...
+      let component = document.createElement(matched.component.name);
+
+      if (this.isMain(matched)) {
+         //Get the app container node
+         let appContainer = document.getElementById(this.appNodeId);
+         appContainer.innerHTML = "";
+         appContainer.appendChild(component);
+      } else {
+         let viewRouter = document.getElementsByTagName("router-view")[0];
+         viewRouter.innerHTML = "";
+         viewRouter.appendChild(component);
+      }
+
+   }
+
+   getRouteParams() {
+      
+   }
+
+   /**
+    * Verify if the route is main or not.
+    */
+   isMain(route) {
+      return route.main || false;
    }
 
    /**
     * Define and register all components and routes
     */
-   defineComponents(routes) {
+   registerComponents(routes) {
       let components = routes.map(item => item.component);
-      register(components);
-   }
-
-   /**
-    * This is triggered when the hash route is changed
-    */
-   onRouteChanged() {
-      window.addEventListener('hashchange', e => {
-         //TODO: This will be refactored
-         let newUri = e.newURL.substr(e.newURL.indexOf('#') + 1, e.newURL.length);
-
-         let route = this.routes.find(route => route.path == newUri);
-
-         if (route) {
-            let appContainer = document.getElementById('app');
-            let componentNode = document.createElement(route.name);
-
-            appContainer.innerHTML = "";
-            appContainer.appendChild(componentNode);
-         } else {
-            console.error("This route not exists");
-         }
-      });
-   }
-
-   /**
-    * Verify default route
-    * @param { Array } routes 
-    */
-   loadDefault() {
-      let defaultRoute = this.routes.filter(route => route.default);
-
-      if (defaultRoute) {
-         this.natigateTo(defaultRoute[0]['path'])
-      } else {
-         throw new Error("Default router not provided to the router")
-      }
-   }
-
-   static getParams() {
-      let newUri = e.newURL.substr(e.newURL.indexOf('#') + 1, e.newURL.length);
-
-      //TODO: add feature of mixins params
-      let params = /{[\d]+}/.test(newUri);
-   }
-
-   /**
-    * Go to especific route
-    * @param { String } uri 
-    * @param { Object } params 
-    */
-   natigateTo(uri, params) {
-      if (params) {
-         //TODO: do stuff if parameters
-      }
-
-      let route = this.routes.find(route => route.path == uri);
-
-      if (route) {
-         let appContainer = document.getElementById('app');
-         let componentNode = document.createElement(route.name);
-
-         appContainer.innerHTML = "";
-         appContainer.appendChild(componentNode);
-
-         window.location.hash = uri;
-      } else {
-         console.error("This route not exists");
-      }
+      register(components.concat([RouterViewComponent]));
    }
 }
