@@ -6,12 +6,14 @@ const CopyPlugin = require('copy-webpack-plugin');
 
 //Export the module
 module.exports = {
+	mode: 'development',
 	entry: {
 		app: './src/js/index.js'
 	},
 	output: {
 		path: path.resolve(__dirname, 'dist'),
-		filename: '[name].js'
+		filename: '[name].js',
+		publicPath: '/'
 	},
 	optimization: {
 		splitChunks: {
@@ -23,7 +25,10 @@ module.exports = {
 			node_modules: path.resolve(__dirname, 'node_modules')
 		}
 	},
-	mode: 'development',
+	devServer: {
+		open: true,
+		historyApiFallback: { index: '/' }
+	},
 	module: {
 		rules: [
 			{
