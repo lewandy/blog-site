@@ -4,7 +4,7 @@
 <div class="card mb-4 card-@POST_ID">
    <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
    <div class="card-body">
-      <a href="#" class="card-title post-title">@POST_TITLE</a>
+      <a onclick="app.router.goToRoute('/posts/@POST_ID')" class="card-title post-title">@POST_TITLE</a>
       <p>@TAGS</p>
       <p class="card-text">@POST_SUMMARY</p>
       <a href="#" class="btn btn-primary">Leer mas &rarr;</a>

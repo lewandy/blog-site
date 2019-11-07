@@ -21,6 +21,10 @@ export default class Auth {
 		
 	}
 
+	static isAuth(){
+		return localStorage.getItem("_token") || false;
+	}
+
 	/**
 	 * Verify the user credentials
 	 * @param { Object } credentials user credentials
