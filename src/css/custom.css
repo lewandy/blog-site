@@ -4,7 +4,12 @@
 
 /* Single post styles */
 .post-title {
-    font-size: 20px;
+    font-size: 30px;
     text-decoration-line: none;
+    cursor: pointer;
 }
 
+/* Navbar menu */
+.header-component {
+    margin-bottom : 50px;
+}
