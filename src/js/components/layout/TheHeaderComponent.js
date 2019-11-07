@@ -15,7 +15,7 @@ export default class TheHeaderComponent extends HTMLElement {
       <!-- Navigation -->
          <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
             <div class="container">
-               <a class="navbar-brand" href="#">Start Bootstrap</a>
+               <a class="navbar-brand" href="#">BlogSPA</a>
                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive"
                   aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
@@ -23,18 +23,18 @@ export default class TheHeaderComponent extends HTMLElement {
                <div class="collapse navbar-collapse" id="navbarResponsive">
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item active">
-                        <a class="nav-link" href="#">Home
+                        <a class="nav-link" href="#">Inicio
                            <span class="sr-only">(current)</span>
                         </a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">About</a>
+                        <a class="nav-link" href="#">Perfil</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">Services</a>
+                        <a class="nav-link" href="#">Crear</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">Contact</a>
+                        <a id="btn-logout" class="nav-link" href="#">Salir</a>
                      </li>
                   </ul>
                </div>

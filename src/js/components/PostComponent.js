@@ -2,16 +2,16 @@ import { getTemplate } from "../utils/template"
 
 export default class PostComponent extends HTMLElement {
     static name = "post-component"
-    templateUri = './templates/postDetail.html'
+    templateUri = '/templates/postDetail.html'
 
     constructor() {
         super();
-
-        this.render();
     }
 
     connectedCallback() {
+        console.log(window.location.pathname);
 
+        this.render();
     }
 
     /**
@@ -20,7 +20,5 @@ export default class PostComponent extends HTMLElement {
     async render() {
         const template = await getTemplate(this.templateUri);
         this.innerHTML = template;
-
-        // this.addListeners();
     }
 }

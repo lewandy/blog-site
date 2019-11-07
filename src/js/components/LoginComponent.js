@@ -4,7 +4,7 @@ import Auth from "../services/authService"
 
 export default class LoginComponent extends HTMLElement {
    static name = "login-component";
-   templateUri = './templates/login.html'
+   templateUri = '/templates/login.html'
 
    constructor() {
       super();
@@ -42,7 +42,7 @@ export default class LoginComponent extends HTMLElement {
                .then(res => {
                   localStorage.setItem('_token', res.token);
 
-                  window.location.hash = "/posts";
+                  window.app.router.goToRoute("/posts");
                })
                .catch(err => {
                   console.log(err);
