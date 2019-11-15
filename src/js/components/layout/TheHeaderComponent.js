@@ -23,15 +23,15 @@ export default class TheHeaderComponent extends HTMLElement {
                <div class="collapse navbar-collapse" id="navbarResponsive">
                   <ul class="navbar-nav ml-auto">
                      <li class="nav-item active">
-                        <a class="nav-link" href="#">Inicio
+                        <a class="nav-link" onclick="blog.router.goToRoute('/home');" style="cursor: pointer;">Inicio
                            <span class="sr-only">(current)</span>
                         </a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">Perfil</a>
+                        <a class="nav-link" onclick="blog.router.goToRoute('/user');" style="cursor: pointer;">Perfil</a>
                      </li>
                      <li class="nav-item">
-                        <a class="nav-link" href="#">Crear</a>
+                        <a class="nav-link" onclick="blog.router.goToRoute('/write');" style="cursor: pointer;">Crear</a>
                      </li>
                      <li class="nav-item">
                         <a id="btn-logout" class="nav-link" href="#">Salir</a>

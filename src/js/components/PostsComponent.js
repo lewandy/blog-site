@@ -1,5 +1,5 @@
-import PostService from "../services/postService"
 import { getTemplate } from "../utils/template";
+import moment from "moment"
 
 
 export default class PostsComponent extends HTMLElement {
@@ -7,16 +7,58 @@ export default class PostsComponent extends HTMLElement {
 
    constructor() {
       super();
-
-      this.postService = new PostService();
    }
 
    connectedCallback() {
       this.renderPosts();
-      this.addEventListener("post_like", (e) => {
-         //TODO : When websocket emmit a event
-         console.log(e)
-      })
+      this.addEventsLinsteners();
+   }
+
+   addEventsLinsteners() {
+      document.addEventListener("likes", this.onLikes);
+      document.addEventListener("view-post", this.onViewPost)
+      document.addEventListener("new-comment", this.onCommentPost)
+   }
+
+   disconnectedCallback() {
+      this.removeEventsListeners();
+   }
+
+   removeEventsListeners() {
+      document.removeEventListener("likes", this.onLikes);
+      document.removeEventListener("view-post", this.onViewPost);
+      document.removeEventListener("new-comment", this.onCommentPost)
+   }
+
+   onLikes({ detail }) {
+      let btn = document.getElementById(`btn-like-${detail.postId}`);
+
+      if (detail.likeType == "like") {
+         btn.setAttribute("data-liked", "true");
+
+
+         btn.classList.remove("btn-secondary");
+         btn.classList.add("btn-primary");
+      } else {
+         btn.setAttribute("data-liked", "false");
+
+         btn.classList.remove("btn-primary");
+         btn.classList.add("btn-secondary");
+      }
+   }
+
+   onViewPost({ detail }) {
+      try {
+         let btn = document.getElementById(`btn-view-${detail.postId}`);
+         btn.getElementsByTagName("span")[0].textContent = detail.views;
+      } catch (error) {
+         
+      }
+   }
+
+   onCommentPost({ detail }) {
+      let btn = document.getElementById(`btn-comment-${detail.postId}`);
+      btn.getElementsByTagName("span")[0].textContent = detail.comments;
    }
 
    async getPostTemplate() {
@@ -50,7 +92,7 @@ export default class PostsComponent extends HTMLElement {
       `;
       this.innerHTML = template;
 
-      let posts = await this.postService.getPosts();
+      let posts = await window.blog.services.Post.getPosts();
 
       let postListContainer = document.getElementById('posts-list');
       let singlePostTemplate = await this.getPostTemplate();
@@ -61,9 +103,11 @@ export default class PostsComponent extends HTMLElement {
          let temp = singlePostTemplate
             .replace(/@POST_ID/g, post.id)
             .replace("@POST_TITLE", post.title)
+            .replace(/@LIKED/g, post.liked)
             .replace("@POST_SUMMARY", post.body)
-            .replace("@POST_DATE", post.createdAt)
+            .replace("@POST_DATE", moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a'))
             .replace("@USER", post.userName)
+            .replace("@US_ID",post.userId)
             .replace("@LIKES", post.likes)
             .replace("@TAGS", this.getTagsHtml(post))
             .replace("@COMMENTS", post.comments)
@@ -74,16 +118,16 @@ export default class PostsComponent extends HTMLElement {
       }
 
       postListContainer.innerHTML = postsListHtml;
-      this.putButtonsLikeEvent();
-   }
 
-
-
-   putButtonsLikeEvent() {
       let buttons = document.getElementsByClassName("btn-like");
-   }
-
-   onButtonLikeClick(e) {
-      console.log(e.target);
+      buttons.forEach(button => {
+         if (button.getAttribute("data-liked") == "true") {
+            button.classList.remove("btn-secondary");
+            button.classList.add("btn-primary");
+         } else {
+            button.classList.remove("btn-primary");
+            button.classList.add("btn-secondary");
+         }
+      });
    }
 }

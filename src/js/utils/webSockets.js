@@ -10,9 +10,10 @@ export function initWebSocket(uri) {
 	}
 
 	ws.onmessage = (e) => {
-		console.log(e);
-
-		// let event = new CustomEvent(e);
+		let data = JSON.parse(e.data);
+		document.dispatchEvent(new CustomEvent(data.type, {
+			detail: data
+		}));
 	}
 }
 

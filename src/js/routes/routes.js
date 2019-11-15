@@ -1,6 +1,8 @@
 import LoginComponent from "../components/LoginComponent";
 import HomeComponent from "../components/HomeComponent"
 import PostComponent from "../components/PostComponent"
+import UserComponent from "../components/UserComponent"
+import WriteComponent from "../components/WriteComponent"
 
 const routes = [
    {
@@ -12,7 +14,7 @@ const routes = [
    },
    {
       name: 'home-component',
-      path: '/posts',
+      path: '/home',
       component: HomeComponent,
       main: true
    },
@@ -20,6 +22,18 @@ const routes = [
       name: 'post-component',
       path: /(\/posts\/\d+)/,
       component: PostComponent,
+      parent: HomeComponent
+   },
+   {
+      name: 'user-component',
+      path: /(\/user(\/\d+)?)/,
+      component: UserComponent,
+      parent: HomeComponent
+   },
+   {
+      name: 'write-component',
+      path: '/write',
+      component: WriteComponent,
       parent: HomeComponent
    }
 ]

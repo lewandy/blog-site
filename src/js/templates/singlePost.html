@@ -2,21 +2,20 @@
 
 <!-- Blog Post -->
 <div class="card mb-4 card-@POST_ID">
-   <img class="card-img-top" src="http://placehold.it/750x300" alt="Card image cap">
-   <div class="card-body">
-      <a onclick="app.router.goToRoute('/posts/@POST_ID')" class="card-title post-title">@POST_TITLE</a>
-      <p>@TAGS</p>
-      <p class="card-text">@POST_SUMMARY</p>
-      <a href="#" class="btn btn-primary">Leer mas &rarr;</a>
-   </div>
-   <div class="card-footer text-muted">
-      @POST_DATE by
-      <a href="#" class="mr-2">@USER</a>
-      <button id="btn-@POST_ID" class="btn-like btn btn-outline-primary btn-sm"><i class="fas fa-thumbs-up"></i><span
-            class="text-primary">@LIKES</span></button>
-      <button class="btn btn-primary btn-sm btn-comment"><i class="fas fa-comments"></i> <span
-            class="text-white">@COMMENTS</span></button>
-      <button class="btn btn-primary btn-sm btn-views"><i class="fas fa-eye"></i> <span
-            class="text-white">@VIEWS</span></button>
-   </div>
+	<div class="card-body">
+		<a class="card-title post-title">@POST_TITLE</a>
+		<p>@TAGS</p>
+		<p class="card-text">@POST_SUMMARY</p>
+		<a onclick="blog.router.goToRoute('/posts/@POST_ID');" style="cursor: pointer;"
+			class="btn btn-primary text-white">Leer mas &rarr;</a>
+	</div>
+	<div class="card-footer text-muted">
+		@POST_DATE by
+		<a onclick="blog.router.goToRoute('/user/@US_ID');" style="cursor: pointer; class="mr-2">@USER</a>
+		<button data-liked="@LIKED" id="btn-like-@POST_ID" onclick="blog.services.Post.putLike('@POST_ID',this)" class="btn btn-primary btn-sm btn-like"><i class="fas fa-thumbs-up"></i><span class="ml-1">@LIKES</span></button>
+		<button id="btn-comment-@POST_ID" class="btn btn-primary btn-sm btn-comment"><i class="fas fa-comments"></i> <span
+				class="text-white">@COMMENTS</span></button>
+		<button id="btn-view-@POST_ID" class="btn btn-primary btn-sm btn-views"><i class="fas fa-eye"></i> <span
+				class="text-white">@VIEWS</span></button>
+	</div>
 </div>

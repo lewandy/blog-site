@@ -12,7 +12,7 @@ export default class LoginComponent extends HTMLElement {
 
       //This will be refactored
       if (window.localStorage.getItem('_token')) {
-         window.location.hash = '/posts';
+         window.location.hash = '/home';
       } else {
          this.render();
       }
@@ -22,7 +22,7 @@ export default class LoginComponent extends HTMLElement {
       //TODO : Do something when the component is mounted in the DOM.
    }
 
-   disconnectedCallback(){
+   disconnectedCallback() {
       //TODO: Remove all event listeners
    }
 
@@ -30,26 +30,22 @@ export default class LoginComponent extends HTMLElement {
     * Add event listerers and other things
     */
    setup() {
-      DomJs.onSubmit('login-frm', (e) => {
+      DomJs.onSubmit('login-frm', async (e) => {
          e.preventDefault();
 
          let email = DomJs.val('inputEmail');
          let password = DomJs.val('inputPassword');
 
          try {
-            this.auth
-               .authenticate({ email, password })
-               .then(res => {
-                  localStorage.setItem('_token', res.token);
+            let auth = await this.auth
+               .authenticate({ email, password });
 
-                  window.app.router.goToRoute("/posts");
-               })
-               .catch(err => {
-                  console.log(err);
-                  DomJs.removeClass('login-alert', 'hide-element')
-               })
+            localStorage.setItem('_user', JSON.stringify(auth));
+            localStorage.setItem('_token', auth.token);
+
+            window.blog.router.goToRoute("/home");
          } catch (error) {
-            console.log(error);
+             DomJs.removeClass('login-alert', 'hide-element')
          }
       });
 

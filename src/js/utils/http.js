@@ -7,8 +7,6 @@ export default class Http {
      */
     constructor(config = null) {
         this.baseUri = config && config.baseUri || window.API_URI;
-        this.token = config && config.baseUri || localStorage.getItem('_token');
-
         this.headers = {
             "Content-Type": "application/json",
             "Authorization": `Bearer ${this.token}`
@@ -26,7 +24,10 @@ export default class Http {
 
         let request = await fetch(`${this.baseUri}${resource}`, {
             method: "POST",
-            headers,
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('_token')}`
+            },
             body: JSON.stringify(data)
         });
 
@@ -42,11 +43,12 @@ export default class Http {
      * @param { Function } callback 
      */
     async Get(resource) {
-        let { headers } = this;
-
         let request = await fetch(`${this.baseUri}${resource}`, {
             method: "GET",
-            headers
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('_token')}`
+            }
         });
 
         if (request.status !== 200)
@@ -54,5 +56,29 @@ export default class Http {
 
         let response = await request.json();
         return response;
+    }
+
+    Put(resource) {
+        let { headers } = this;
+
+        fetch(`${this.baseUri}${resource}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('_token')}`
+            }
+        });
+    }
+
+    Delete(resource) {
+        let { headers } = this;
+
+        fetch(`${this.baseUri}${resource}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+                "Authorization": `Bearer ${localStorage.getItem('_token')}`
+            }
+        });
     }
 }

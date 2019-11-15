@@ -11,24 +11,21 @@ export default class HomeComponent extends HTMLElement {
 
       //TODO: Refactor this
       if (!window.localStorage.getItem('_token')) {
-         window.app.router.goToRoute("/login");
+         window.blog.router.goToRoute("/login");
       }
 
       this.render();
 
       //Open connection with websocket protocol
-      //initWebSocket(window.WS_URI);
+      initWebSocket(window.WS_URI);
    }
 
    connectedCallback() {
-      this.addEventListener("post_like", (e) => {
-         //TODO : When websocket emmit a event
-         console.log(e)
-      })
+      
    }
 
    disconnectedCallback() {
-      console.log("Se quito home componente")
+      // console.log("Se quito home componente")
    }
 
    addListeners() {
@@ -36,7 +33,7 @@ export default class HomeComponent extends HTMLElement {
          e.preventDefault();
 
          localStorage.removeItem('_token');
-         window.app.router.goToRoute("/login");
+         window.blog.router.goToRoute("/login");
       });
    }
 
