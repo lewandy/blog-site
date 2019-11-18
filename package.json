@@ -34,10 +34,10 @@
     "webpack-dev-server": "^3.8.2"
   },
   "scripts": {
-    "build": "webpack --config webpack.config.js",
+    "build-dev": "webpack --config webpack.config.js",
     "serve": "node ./bin/www",
-    "start": "webpack-dev-server",
-    "dev": "webpack -d"
+    "dev-server": "webpack-dev-server",
+    "build-prod": "webpack -p"
   },
   "repository": {
     "type": "git",
