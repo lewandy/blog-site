@@ -57,7 +57,7 @@ export default class CommentsComponent extends HTMLElement {
 
       comments.forEach(comment =>
          commentsHtml += `<div class="media mb-4">
-            <img class="d-flex mr-3 rounded-circle" src="http://placehold.it/50x50" alt="">
+            <img class="d-flex mr-3 rounded-circle" src="https://picsum.photos/50/50" alt="">
             <div class="media-body">
                <h5 class="mt-0">${ comment.userName}</h5>
                ${comment.body}.

@@ -18,6 +18,11 @@ export default class postService {
       return posts.slice(0, 5);
    }
 
+   async registerPost(data) {
+      let post = await this.http.Post(`post`,data);
+      return post;
+   }
+
    async getPost(id) {
       let post = await this.http.Get(`post/${id}`);
       return post;
@@ -42,4 +47,6 @@ export default class postService {
          this.http.Put(`post/${postId}/like`);
       }
    }
+
+
 }

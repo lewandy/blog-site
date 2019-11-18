@@ -21,7 +21,7 @@ export default class UserComponent extends HTMLElement {
 
       this.innerHTML = `
          <div class="card mb-3 mt-4">
-         <img src="http://placehold.it/50x30" class="card-img-top" alt="...">
+         <img src="https://picsum.photos/50/50" class="card-img-top" alt="...">
             <div class="card-body">
                <h5 class="card-title">${ user.name }</h5>
                <p class="card-text">El usuario tiene ${user.posts} posts.</p>

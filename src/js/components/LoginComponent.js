@@ -1,6 +1,7 @@
 import { getTemplate } from "../utils/template";
 import DomJs from "../utils/dom"
 import Auth from "../services/authService"
+import { initWebSocket } from "../utils/webSockets"
 
 export default class LoginComponent extends HTMLElement {
    static name = "login-component";
@@ -43,8 +44,11 @@ export default class LoginComponent extends HTMLElement {
             localStorage.setItem('_user', JSON.stringify(auth));
             localStorage.setItem('_token', auth.token);
 
+            initWebSocket(window.WS_URI);
+
             window.blog.router.goToRoute("/home");
          } catch (error) {
+            debugger
              DomJs.removeClass('login-alert', 'hide-element')
          }
       });
