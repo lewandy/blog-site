@@ -79,6 +79,7 @@ export default class PostComponent extends HTMLElement {
 			.replace("@POST_USER", post.userName)
 			.replace("@POST_DATE", moment(post.createdAt).format('MMMM Do YYYY, h:mm:ss a'))
 			.replace("@POST_BODY", post.body)
+			.replace("@US_ID",post.userId)
 			.replace("@LIKES", post.likes)
 			.replace("@TAGS", this.getTagsHtml(post))
 			.replace("@COMMENTS", post.comments)

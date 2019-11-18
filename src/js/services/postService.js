@@ -11,11 +11,7 @@ export default class postService {
     */
    async getPosts() {
       let posts = await this.http.Get('post');
-
-      //This is for test purposes
-      // let posts = await fetch('/public/home.json');
-      // posts = await posts.json();
-      return posts.slice(0, 5);
+      return posts;
    }
 
    async registerPost(data) {
