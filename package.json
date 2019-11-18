@@ -9,7 +9,11 @@
     "dotenv": "^8.1.0",
     "jquery": "^3.4.1",
     "moment": "^2.24.0",
-    "popper.js": "^1.15.0"
+    "popper.js": "^1.15.0",
+    "cookie-parser": "~1.4.4",
+    "debug": "~2.6.9",
+    "express": "~4.16.1",
+    "morgan": "~1.9.1"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
@@ -31,6 +35,7 @@
   },
   "scripts": {
     "build": "webpack --config webpack.config.js",
+    "serve": "node ./bin/www",
     "start": "webpack-dev-server",
     "dev": "webpack -d"
   },
