@@ -27,18 +27,6 @@ export default class Router {
 
 		if (Auth.isAuth()) {
 			this.goToRoute("/home");
-			// if (pathname == "/") {
-			// 	this.goToRoute("/home");
-			// 	return;
-			// }
-
-			// if (window.blog instanceof BlogApp){
-			// 	console.log("Is a app instance");
-			// } else {
-			// 	// console.log(window.blog);
-			// }
-
-			// this.goToRoute(pathname);
 		} else {
 			this.goToRoute(matched.path);
 		}
